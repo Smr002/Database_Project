@@ -65,3 +65,66 @@ CREATE TABLE IF NOT EXISTS Students (
     Graduate BOOLEAN,
     GraduationDate DATE
 );
+CREATE TABLE IF NOT EXISTS ProgramEnrollment(
+    EnrollementID INT PRIMARY KEY,
+    StudentID INT NOT NULL,
+    FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+    ProgramYearID INT NOT NULL,
+    FOREIGN KEY(ProgramYearID) REFERENCES ProgramYears(ProgramYearID)
+); 
+
+CREATE TABLE IF NOT EXISTS CourseSelection(
+    CourseSelectionID INT PRIMARY KEY,
+    ClassID INT NOT NULL,
+    FOREIGN KEY(ClassID) REFERENCES Classes(ClassID),
+    StudentID INT NOT NULL,
+    FOREIGN KEY(StudentID) REFERENCES Students(StudentID)
+);
+
+CREATE TABLE IF NOT EXISTS LecturerClass(
+    LecturerClassID INT PRIMARY KEY,
+    ClassID INT NOT NULL,
+    FOREIGN KEY(ClassID) REFERENCES Classes(ClassID),
+    LecturerID INT NOT NULL,
+    FOREIGN KEY(LecturerID) REFERENCES Lecturers(LecturerID)
+);
+
+CREATE TABLE IF NOT EXISTS Attendence(
+    AttendanceID INT PRIMARY KEY,
+    StudentID INT NOT NULL,
+    FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+    CourseID INT NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    total INT NOT NULL,
+    attended INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS InterimGrades(
+    GradeID INT PRIMARY KEY,
+    StudentID INT NOT NULL,
+    FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+    CourseID INT NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    Type VARCHAR(20) NOT NULL,
+    Percentage INT NOT NULL,
+    Val DECIMAL(2,2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS FinalGrade(
+    FinalGrade INT PRIMARY KEY,
+    StudentID INT NOT NULL,
+    FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+    CourseID INT NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    Val DECIMAL(2,2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Payments(
+    PaymentID INT PRIMARY KEY,
+    StudentID INT NOT NULL,
+    FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
+    ProgramYearID INT NOT NULL,
+    FOREIGN KEY(ProgramYearID) REFERENCES ProgramYears(ProgramYearID),
+    PaymentAmount DECIMAL(4,2) NOT NULL,
+    PaymentDate DATE NOT NULL
+);
