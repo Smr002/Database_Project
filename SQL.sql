@@ -66,10 +66,6 @@ CREATE TABLE IF NOT EXISTS Students (
     Graduate BOOLEAN,
     GraduationDate DATE
 );
-<<<<<<< HEAD
-
-=======
->>>>>>> e3f3eb010525b71b0a6fa200ae195cf72625e866
 CREATE TABLE IF NOT EXISTS ProgramEnrollment(
     EnrollementID INT PRIMARY KEY,
     StudentID INT NOT NULL,
@@ -112,11 +108,7 @@ CREATE TABLE IF NOT EXISTS InterimGrades(
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
     Type VARCHAR(20) NOT NULL,
     Percentage INT NOT NULL,
-<<<<<<< HEAD
     Val INT
-=======
-    Val DECIMAL(2,2) NOT NULL
->>>>>>> e3f3eb010525b71b0a6fa200ae195cf72625e866
 );
 
 CREATE TABLE IF NOT EXISTS FinalGrade(
@@ -125,11 +117,7 @@ CREATE TABLE IF NOT EXISTS FinalGrade(
     FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
     CourseID INT NOT NULL,
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
-<<<<<<< HEAD
     Val DECIMAL(4,2) NOT NULL
-=======
-    Val DECIMAL(2,2) NOT NULL
->>>>>>> e3f3eb010525b71b0a6fa200ae195cf72625e866
 );
 
 CREATE TABLE IF NOT EXISTS Payments(
@@ -138,7 +126,7 @@ CREATE TABLE IF NOT EXISTS Payments(
     FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
     ProgramYearID INT NOT NULL,
     FOREIGN KEY(ProgramYearID) REFERENCES ProgramYears(ProgramYearID),
-<<<<<<< HEAD
+
     PaymentAmount INT NOT NULL,
     PaymentDate DATE NOT NULL
 );
@@ -1435,8 +1423,4 @@ VALUES
 (22,21,19,500,'2023-02-26'),
 (23,21,20,500,'2023-09-19'),
 (24,21,20,500,'2023-02-20');
-=======
-    PaymentAmount DECIMAL(4,2) NOT NULL,
-    PaymentDate DATE NOT NULL
-);
->>>>>>> e3f3eb010525b71b0a6fa200ae195cf72625e866
+
