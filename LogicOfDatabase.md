@@ -50,6 +50,7 @@
 - StudentName
 - StudentEmail
 - YearOfEnrollment
+- Scholarship
 - Graduate BOOLEAN
 - GraduationDate
  
