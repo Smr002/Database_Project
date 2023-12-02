@@ -126,7 +126,6 @@ CREATE TABLE IF NOT EXISTS Payments(
     FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
     ProgramYearID INT NOT NULL,
     FOREIGN KEY(ProgramYearID) REFERENCES ProgramYears(ProgramYearID),
-
     PaymentAmount INT NOT NULL,
     PaymentDate DATE NOT NULL
 );
@@ -1382,16 +1381,6 @@ VALUES
 (701,5,15,3,3),
 (702,21,15,3,0);
 
-
-
-INSERT INTO Payments(PaymentID, StudentID, ProgramYearID, PaymentAmount,PaymentDate)
-VALUES
-(1,1,20,4000,'2023-09-12'),
-(2,2,20,4000,'2023-09-15'),
-(3,3,20,4000,'2023-08-30'),
-(4,4,20,4000,'2023-09-26'),
-(5,5,20,4000,'2023-09-19'),
-(6,21,20,4000,'2023-09-10');
 
 INSERT INTO Payments(PaymentID, StudentID, ProgramYearID, PaymentAmount,PaymentDate)
 VALUES
