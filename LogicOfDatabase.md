@@ -53,7 +53,8 @@
 - Scholarship
 - Graduate BOOLEAN
 - GraduationDate
- 
+-BirthDate 
+-BirthPlace 
 ## ProgramEnrollment Table: [ nxenesi esht rregjistruar per 1 vit | ERD Relationship]
 - EnrollmentID (Primary Key)
 - StudentID (Foreign Key referencing Students)
