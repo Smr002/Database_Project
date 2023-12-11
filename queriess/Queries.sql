@@ -128,4 +128,34 @@ JOIN Students s ON fg.StudentID = s.StudentID
 JOIN Courses c ON fg.CourseID = c.CourseID
 GROUP BY fg.CourseID, c.Name, s.StudentName;
 
+--Displaying a lot of information
+SELECT 
+    s.StudentID,
+    s.StudentName,
+    s.StudentEmail,
+    s.YearOfEnrollment,
+    s.Scolarship,
+    s.Graduate,
+    s.GraduationDate,
+    s.BirthDate,
+    s.BirthPlace,
+    pr.ProgramID,
+    pr.ProgramName,
+    pr.Tuition_Fee,
+    d.DepartmentID,
+    d.DepartmentName,
+    f.FacultyID,
+    f.FacultyName
+FROM 
+    Students s
+LEFT JOIN 
+    ProgramEnrollment pe ON s.StudentID = pe.StudentID
+LEFT JOIN 
+    ProgramYears py ON pe.ProgramYearID = py.ProgramYearID
+LEFT JOIN 
+    Programs pr ON py.ProgramID = pr.ProgramID
+LEFT JOIN 
+    Departments d ON pr.DepartmentID = d.DepartmentID
+LEFT JOIN 
+    Faculties f ON d.FacultyID = f.FacultyID;
 

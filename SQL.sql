@@ -1912,7 +1912,7 @@ UPDATE Students SET BirthDate='2002-07-21' WHERE StudentID = 49;
 UPDATE Students SET BirthDate='2003-10-06' WHERE StudentID = 50;
 
 
-UPDATE Students SET BirthPlace='Divjake' WHERE StudentID = 1;
+UPDATE Students SET BirthPlace='Gjirokaster' WHERE StudentID = 1;
 UPDATE Students SET BirthPlace='Kukes' WHERE StudentID = 2;
 UPDATE Students SET BirthPlace='Korce' WHERE StudentID = 3;
 UPDATE Students SET BirthPlace='Korce' WHERE StudentID = 4;
@@ -1963,3 +1963,8 @@ UPDATE Students SET BirthPlace='Tirana' WHERE StudentID = 48;
 UPDATE Students SET BirthPlace='Lushnje' WHERE StudentID = 49;
 
 
+INSERT INTO ProgramEnrollment(EnrollementID,StudentID,ProgramYearID)
+VALUES 
+(19,12,17),
+(20,15,20),
+(21,19,19);
