@@ -26,7 +26,7 @@ WHERE Departments.DepartmentName = 'Computer Engineering';
 SELECT MAX(Tuition_Fee) AS MaxTuitionFee
 FROM Programs;
 
-SELECT Students.StudentName
+SELECT DISTINCT Students.StudentName
 FROM Students
 LEFT JOIN Payments ON Students.StudentID = Payments.StudentID
 WHERE Payments.PaymentID IS  NOT NULL;
@@ -40,7 +40,7 @@ FROM Courses
 LEFT JOIN Classes ON Courses.CourseID = Classes.CourseID
 GROUP BY Courses.Code;
 
-SELECT Courses.Code, Courses.Name, Programs.ProgramName
+SELECT DISTINCT Courses.Code, Courses.Name, Programs.ProgramName
 FROM Courses
 JOIN Semesters ON Courses.SemesterID = Semesters.SemesterID
 JOIN ProgramYears ON Semesters.ProgramYearID = ProgramYears.ProgramYearID
@@ -89,11 +89,12 @@ GROUP BY l.LecturerName
 ORDER BY TaughtClassesCount DESC
 LIMIT 1;
 
---Student with the highest scholarship
+--Students that have a scolarship
 SELECT StudentName, Scolarship
 FROM Students
-ORDER BY Scolarship DESC
-LIMIT 1;
+WHERE Scolarship > 0
+ORDER BY Scolarship DESC;
+
 
 --Total credits earned by each student
 SELECT s.StudentID, s.StudentName, SUM(c.Credits) AS TotalCreditsEarned
@@ -104,7 +105,7 @@ JOIN Courses c ON cl.CourseID = c.CourseID
 GROUP BY s.StudentID, s.StudentName;
 
 --Students who have paid more than average payment
-SELECT s.StudentName, p.PaymentAmount, py.ProgramYearID
+SELECT DISTINCT s.StudentName, p.PaymentAmount, py.ProgramYearID
 FROM Students s
 JOIN Payments p ON s.StudentID = p.StudentID
 JOIN ProgramEnrollment pe ON s.StudentID = pe.StudentID
@@ -159,3 +160,15 @@ LEFT JOIN
 LEFT JOIN 
     Faculties f ON d.FacultyID = f.FacultyID;
 
+
+SELECT C.CourseID, C.Name AS CourseName, AVG(A.attended * 100.0 / A.total) AS AvgAttendancePercentage
+FROM Courses C
+LEFT JOIN Attendence A ON C.CourseID = A.CourseID
+GROUP BY C.CourseID, C.Name
+HAVING AVG(A.attended * 100.0 / A.total) < 70;
+
+SELECT StudentName AS Name, StudentEmail AS Email, 'Enrolled in Program' AS Details
+FROM Students
+UNION
+SELECT LecturerName AS Name, Email AS Email, 'Teaching Course' AS Details
+FROM Lecturers;
